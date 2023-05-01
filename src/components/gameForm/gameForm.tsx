@@ -4,6 +4,8 @@ import { Button } from '../button/button.tsx';
 import { useGameForm } from './useGameForm.tsx';
 import { useNavigate } from 'react-router-dom';
 import { ErrorMessage } from '../errorMessage/errorMessage.tsx';
+import { Heading } from '../heading/heading.tsx';
+import styles from './gameForm.module.scss';
 
 type GameProps = {
 	question: string;
@@ -23,7 +25,9 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 
 	return (
 		<>
-			<h1>{question}</h1>
+			<Heading tag='h1' size='medium' className={styles.capitalize}>
+				{question}
+			</Heading>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Area>
 					{answers.map((answer, i) => {
