@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from '../userProvider/userProvider.tsx';
+import { UserContext } from '../../context/userContext/userContext.tsx';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 

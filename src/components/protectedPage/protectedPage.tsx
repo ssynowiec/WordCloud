@@ -1,5 +1,5 @@
 import { ReactNode, useContext, useEffect } from 'react';
-import { UserContext } from '../userProvider/userProvider.tsx';
+import { UserContext } from '../../context/userContext/userContext.tsx';
 import { useNavigate } from 'react-router-dom';
 
 type ProtectedPageProps = {
