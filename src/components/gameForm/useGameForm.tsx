@@ -28,7 +28,7 @@ export const useGameForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<FormValues>({
 		resolver: yupResolver(formSchema),
 	});
 

@@ -1,7 +1,9 @@
 type ErrorMessageProps = {
-	message: string;
+	message?: string;
 };
 
-export const ErrorMessage = ({ message }: ErrorMessageProps) => {
+export const ErrorMessage = ({
+	message = 'SOMETHING WENT WRONG',
+}: ErrorMessageProps) => {
 	return <p className='text-red-500'>{message}</p>;
 };

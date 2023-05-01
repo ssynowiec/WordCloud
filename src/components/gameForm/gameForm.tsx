@@ -16,8 +16,7 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 	const { register, handleSubmit, onSubmit, errors, userAnswers, isSubmitted } =
 		useGameForm();
 
-	const finishGame = (e) => {
-		e.preventDefault();
+	const finishGame = () => {
 		navigate('/result');
 	};
 

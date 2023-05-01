@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../userProvider/userProvider.tsx';
@@ -21,10 +21,10 @@ export const useUserForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<FormValues>({
 		resolver: yupResolver(formSchema),
 	});
-	const onSubmit = (data: FormValues) => {
+	const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
 		setUser(data.username);
 		navigate('/play');
 	};

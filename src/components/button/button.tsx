@@ -1,4 +1,4 @@
-import type { ReactNode, SyntheticEvent } from 'react';
+import type { ReactNode } from 'react';
 
 type BaseButtonProps = {
 	children: ReactNode;
@@ -6,13 +6,13 @@ type BaseButtonProps = {
 };
 
 type ButtonPropsTypeSubmit = {
-	onClick?: (e: SyntheticEvent) => void;
+	onClick?: () => void;
 	type: 'submit';
 };
 
 type ButtonPropsTypeButton = {
 	type?: 'button';
-	onClick: (e: SyntheticEvent) => void;
+	onClick: () => void;
 };
 
 type ButtonProps = (ButtonPropsTypeSubmit | ButtonPropsTypeButton) &

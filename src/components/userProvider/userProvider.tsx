@@ -4,16 +4,18 @@ type UserProviderProps = {
 	children: ReactNode;
 };
 
-export const UserContext = createContext<{
+interface UserContextProps {
 	user: string | null;
-	setUser: (username: string) => void;
-}>({
+	setUser: (username: string | null) => void;
+}
+
+export const UserContext = createContext<UserContextProps>({
 	user: null,
 	setUser: () => {},
 });
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<string | null>(null);
 
 	return (
 		<UserContext.Provider value={{ user, setUser }}>

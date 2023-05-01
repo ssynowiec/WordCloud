@@ -1,6 +1,7 @@
 import { Input } from '../input/input.tsx';
 import { Button } from '../button/button.tsx';
 import { useUserForm } from './useUserForm.tsx';
+import { ErrorMessage } from '../errorMessage/errorMessage.tsx';
 
 export const UserForm = () => {
 	const { register, handleSubmit, onSubmit, errors } = useUserForm();
@@ -16,9 +17,7 @@ export const UserForm = () => {
 				{...register('username', { required: true })}
 				isError={Boolean(errors.username)}
 			/>
-			{errors.username && (
-				<p className='text-red-500'>This field is required</p>
-			)}
+			{errors.username && <ErrorMessage message={errors.username.message} />}
 			<Button type='submit'>play</Button>
 		</form>
 	);
