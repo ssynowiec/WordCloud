@@ -34,7 +34,7 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 							return (
 								<WordElement
 									word={answer}
-									register={register}
+									{...register('answers')}
 									key={i}
 									checked={true}
 									correct={true}
@@ -48,7 +48,7 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 							return (
 								<WordElement
 									word={answer}
-									register={register}
+									{...register('answers')}
 									key={i}
 									checked={true}
 									correct={false}
@@ -57,7 +57,9 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 							);
 						} else {
 							// TODO: add disabled after submit
-							return <WordElement word={answer} register={register} key={i} />;
+							return (
+								<WordElement word={answer} {...register('answers')} key={i} />
+							);
 						}
 					})}
 				</Area>

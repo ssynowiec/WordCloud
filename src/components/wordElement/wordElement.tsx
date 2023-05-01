@@ -1,10 +1,11 @@
 import './wordElement.scss';
 import { clsx } from 'clsx';
+import { ChangeEvent } from 'react';
 
 type WordElementProps = {
 	word: string;
-	// FIXME: any
-	register: any;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	name: string;
 	correct?: boolean;
 	checked?: boolean;
 	disabled?: boolean;
@@ -12,7 +13,8 @@ type WordElementProps = {
 
 export const WordElement = ({
 	word,
-	register,
+	onChange,
+	name,
 	correct,
 	checked,
 	disabled,
@@ -28,7 +30,8 @@ export const WordElement = ({
 				className={`hidden`}
 				value={word}
 				disabled={disabled}
-				{...register('answers')}
+				name={name}
+				onChange={onChange}
 			/>
 			<label htmlFor={word} className='cursor-pointer font-bold text-gray-300'>
 				{correct && checked && <span className='text-green-500'>Good</span>}
