@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
-import { UserProvider } from './components/userProvider/userProvider.tsx';
+import { UserProvider } from './context/userContext/userContext.tsx';
 import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { PageNotFound } from './pages/404/404.tsx';
