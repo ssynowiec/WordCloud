@@ -22,8 +22,12 @@ export const Result = () => {
 				<Heading tag='h1' size='medium'>
 					Congratulations, {user}!
 				</Heading>
-				<p className='font-bold'>Your score:</p>
-				<p className='font-bold text-sky-500'>{score} points</p>
+				<Heading tag='h2' size='medium'>
+					Your score:
+				</Heading>
+				<Heading tag='h3' size='medium' className='text-sky-500'>
+					{score} points
+				</Heading>
 				<Button onClick={playAgain}>play again</Button>
 			</section>
 		</MainLayout>
