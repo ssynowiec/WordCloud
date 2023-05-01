@@ -33,7 +33,9 @@ export const WordElement = forwardRef<HTMLInputElement, WordElementProps>(
 				/>
 				<label
 					htmlFor={word}
-					className='cursor-pointer font-bold text-gray-300'
+					className={clsx('cursor-pointer font-bold text-gray-300', {
+						'cursor-not-allowed': disabled,
+					})}
 				>
 					{correct && checked && <span className='text-green-500'>Good</span>}
 					{!correct && checked && <span className='text-red-300'>Bad</span>}

@@ -38,7 +38,7 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 									key={i}
 									checked={true}
 									correct={true}
-									// disabled={true}
+									disabled={isSubmitted}
 								/>
 							);
 						} else if (
@@ -52,13 +52,17 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 									key={i}
 									checked={true}
 									correct={false}
-									// disabled={true}
+									disabled={isSubmitted}
 								/>
 							);
 						} else {
-							// TODO: add disabled after submit
 							return (
-								<WordElement word={answer} {...register('answers')} key={i} />
+								<WordElement
+									word={answer}
+									{...register('answers')}
+									key={i}
+									disabled={isSubmitted}
+								/>
 							);
 						}
 					})}
