@@ -34,17 +34,13 @@ export const useGameForm = () => {
 
 	const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
 		const selectedAnswers = data.answers;
-		console.log('Selected', selectedAnswers);
 		setUserAnswers(selectedAnswers);
 		setIsSubmitted(true);
 
 		let numberOfMarkedCorrectAnswers = 0,
 			numberOfMarkedIncorrectAnswers = 0;
 
-		console.log('Correct', correctAnswers);
-
 		selectedAnswers.forEach((answer) => {
-			console.log(answer, correctAnswers.includes(answer));
 			if (correctAnswers.includes(answer)) {
 				numberOfMarkedCorrectAnswers++;
 			} else if (!correctAnswers.includes(answer)) {
@@ -52,21 +48,12 @@ export const useGameForm = () => {
 			}
 		});
 
-		console.log('Correct answers: ', numberOfMarkedCorrectAnswers);
-		console.log('Incorrect answers: ', numberOfMarkedIncorrectAnswers);
-		console.log(
-			'Unmarked correct answers: ',
-			correctAnswers.length - numberOfMarkedCorrectAnswers,
-		);
-
 		const numberOfUnmarkedCorrectAnswers =
 			correctAnswers.length - numberOfMarkedCorrectAnswers;
 
 		const points =
 			numberOfMarkedCorrectAnswers * 2 -
 			(numberOfMarkedIncorrectAnswers + numberOfUnmarkedCorrectAnswers);
-
-		console.log('Points: ', points);
 
 		userData.setScore(points);
 	};
