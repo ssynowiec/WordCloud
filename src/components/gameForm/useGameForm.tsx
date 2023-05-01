@@ -12,17 +12,17 @@ type FormValues = {
 	answers: string[];
 };
 
-const questions = data;
-
-const randomIndex = Math.floor(Math.random() * questions.length);
-const question = questions[randomIndex].question;
-const answers = questions[randomIndex].all_words;
-const correctAnswers = questions[randomIndex].good_words;
-
 export const useGameForm = () => {
 	const [userAnswers, setUserAnswers] = useState(['']);
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [score, setScore] = useState(0);
+
+	const questions = data;
+
+	const randomIndex = Math.floor(Math.random() * questions.length);
+	const question = questions[randomIndex].question;
+	const answers = questions[randomIndex].all_words;
+	const correctAnswers = questions[randomIndex].good_words;
 
 	const {
 		register,
