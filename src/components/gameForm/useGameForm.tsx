@@ -1,11 +1,11 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { data } from '../../api/words.ts';
 
 const formSchema = yup.object().shape({
-	answers: yup.array().min(1).required('Please select at least one answer'),
+	answers: yup.array().min(1).required('At least one word must be chosen'),
 });
 
 type FormValues = {
@@ -32,9 +32,9 @@ export const useGameForm = () => {
 		resolver: yupResolver(formSchema),
 	});
 
-	const onSubmit = (data: FormValues) => {
+	const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
 		const selectedAnswers = data.answers;
-
+		console.log(selectedAnswers);
 		setUserAnswers(selectedAnswers);
 		setIsSubmitted(true);
 

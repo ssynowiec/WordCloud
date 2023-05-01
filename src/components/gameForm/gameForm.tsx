@@ -3,6 +3,7 @@ import { WordElement } from '../wordElement/wordElement.tsx';
 import { Button } from '../button/button.tsx';
 import { useGameForm } from './useGameForm.tsx';
 import { useNavigate } from 'react-router-dom';
+import { ErrorMessage } from '../errorMessage/errorMessage.tsx';
 
 type GameProps = {
 	question: string;
@@ -65,7 +66,9 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 
 				{errors && (
 					<p style={{ color: 'red' }}>
-						{errors.answers && 'At least one word must be chosen'}
+						{errors.answers && (
+							<ErrorMessage message={errors.answers.message} />
+						)}
 					</p>
 				)}
 
