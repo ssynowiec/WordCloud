@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './App.tsx';
+import { App } from './pages/home/app.tsx';
 import { UserProvider } from './context/userContext/userContext.tsx';
 import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

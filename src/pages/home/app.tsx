@@ -1,6 +1,6 @@
-import './pages/home/app.scss';
-import { UserForm } from './components/userForm/userForm.tsx';
-import { MainLayout } from './components/layouts/mainLayout.tsx';
+import './app.scss';
+import { UserForm } from '../../components/userForm/userForm.tsx';
+import { MainLayout } from '../../components/layouts/mainLayout.tsx';
 
 export const App = () => {
 	return (
