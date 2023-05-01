@@ -1,24 +1,22 @@
-# Word Cloud GameForm
+# Word Cloud Game
+
+WordCloud game is a game in which you must choose words from the cloud matching the given word
 
 ## Live preview
 
-[DEMO](https://wordcloudgame-mu.vercel.app/)
+[DEMO](https://wordcloudgame-mu.vercel.app/) - deployed on Vercel
 
-### Packages used in this project
+## How to run
 
-- vite
+```bash
+git clone https://github.com/ssynowiec/WordCloud.git
 
-- react.js
-- react-router-dom
+cd WordCloud
 
-- react-hook-form
-- yup
+yarn
 
-- clsx
-- tailwindcss
-
-- eslint
-- prettier
+yarn dev
+```
 
 ### Images used in this project
 
