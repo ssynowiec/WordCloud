@@ -1,8 +1,9 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import { data } from '../../api/words.ts';
+import { useContext, useState } from 'react';
+import { GameContext } from '../../context/gameContext/gameContext.tsx';
+import { UserContext } from '../../context/userContext/userContext.tsx';
 
 const formSchema = yup.object().shape({
 	answers: yup.array().min(1).required('At least one word must be chosen'),
@@ -15,14 +16,13 @@ type FormValues = {
 export const useGameForm = () => {
 	const [userAnswers, setUserAnswers] = useState(['']);
 	const [isSubmitted, setIsSubmitted] = useState(false);
-	const [score, setScore] = useState(0);
 
-	const questions = data;
+	const userData = useContext(UserContext);
+	const game = useContext(GameContext);
 
-	const randomIndex = Math.floor(Math.random() * questions.length);
-	const question = questions[randomIndex].question;
-	const answers = questions[randomIndex].all_words;
-	const correctAnswers = questions[randomIndex].good_words;
+	const question = game.question;
+	const answers = game.all_words;
+	const correctAnswers = game.good_words;
 
 	const {
 		register,
@@ -34,14 +34,14 @@ export const useGameForm = () => {
 
 	const onSubmit: SubmitHandler<FormValues> = (data: FormValues) => {
 		const selectedAnswers = data.answers;
-		console.log(selectedAnswers);
+		console.log('Selected', selectedAnswers);
 		setUserAnswers(selectedAnswers);
 		setIsSubmitted(true);
 
 		let numberOfMarkedCorrectAnswers = 0,
 			numberOfMarkedIncorrectAnswers = 0;
 
-		console.log(selectedAnswers, correctAnswers);
+		console.log('Correct', correctAnswers);
 
 		selectedAnswers.forEach((answer) => {
 			console.log(answer, correctAnswers.includes(answer));
@@ -68,7 +68,7 @@ export const useGameForm = () => {
 
 		console.log('Points: ', points);
 
-		setScore(points);
+		userData.setScore(points);
 	};
 
 	return {
@@ -79,6 +79,5 @@ export const useGameForm = () => {
 		userAnswers,
 		isSubmitted,
 		question: { question, answers, correctAnswers },
-		score,
 	};
 };

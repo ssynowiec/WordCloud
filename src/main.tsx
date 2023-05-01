@@ -8,6 +8,7 @@ import { PageNotFound } from './pages/404/404.tsx';
 import { Game } from './pages/game/game.tsx';
 import { Result } from './pages/result/result.tsx';
 import { ProtectedPage } from './components/protectedPage/protectedPage.tsx';
+import { GameProvider } from './context/gameContext/gameContext.tsx';
 
 const router = createBrowserRouter([
 	{ path: '/', element: <App /> },
@@ -16,7 +17,9 @@ const router = createBrowserRouter([
 		element: (
 			// TODO: uncomment this line to protect the page
 			// <ProtectedPage>
-			<Game />
+			<GameProvider>
+				<Game />
+			</GameProvider>
 			// </ProtectedPage>
 		),
 	},
