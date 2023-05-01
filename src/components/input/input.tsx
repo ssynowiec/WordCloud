@@ -21,7 +21,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 				value={value}
 				type={type}
 				placeholder={placeholder}
-				className={clsx('m-4 rounded-md border-2 px-6 py-3', classes)}
+				className={clsx(
+					'm-4 w-full rounded-md border-2 px-6 py-3 md:w-[30%]',
+					classes,
+				)}
 				ref={ref}
 				{...rest}
 			/>
