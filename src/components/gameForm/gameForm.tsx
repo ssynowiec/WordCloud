@@ -68,12 +68,8 @@ export const GameForm = ({ question, answers, correctAnswers }: GameProps) => {
 					})}
 				</Area>
 
-				{errors && (
-					<p style={{ color: 'red' }}>
-						{errors.answers && (
-							<ErrorMessage message={errors.answers.message} />
-						)}
-					</p>
+				{errors.answers && (
+					<ErrorMessage message='At least one word must be chosen' />
 				)}
 
 				{isSubmitted ? (
