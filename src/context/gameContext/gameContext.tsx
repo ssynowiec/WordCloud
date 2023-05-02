@@ -1,5 +1,4 @@
-import { createContext, type ReactNode } from 'react';
-import { data } from '../../api/words.ts';
+import { createContext, type ReactNode, useEffect, useState } from 'react';
 
 interface GameContextProps {
 	question: string;
@@ -18,17 +17,48 @@ type GameProviderProps = {
 };
 
 export const GameProvider = ({ children }: GameProviderProps) => {
-	const questions = data;
+	const [question, setQuestion] = useState<GameContextProps>({
+		question: '',
+		all_words: [],
+		good_words: [],
+	});
 
-	const randomIndex = Math.floor(Math.random() * questions.length);
-	const questionData = questions[randomIndex];
-	const question = questionData.question;
-	const answers = questionData.all_words;
-	const correctAnswers = questionData.good_words;
+	useEffect(() => {
+		let ignore = false;
+		const fetchData = async () => {
+			try {
+				const data = await fetch(
+					'https://my-json-server.typicode.com/ssynowiec/WordCloud-api/questions',
+				);
+				const response = await data.json();
+				const randomIndex = Math.floor(Math.random() * response.length);
+				const questionData = response[randomIndex];
+				if (!ignore) {
+					setQuestion(questionData);
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		fetchData();
+
+		return () => {
+			ignore = true;
+		};
+	}, []);
+
+	const questionContent = question.question;
+	const answers = question.all_words;
+	const correctAnswers = question.good_words;
 
 	return (
 		<GameContext.Provider
-			value={{ question, all_words: answers, good_words: correctAnswers }}
+			value={{
+				question: questionContent,
+				all_words: answers,
+				good_words: correctAnswers,
+			}}
 		>
 			{children}
 		</GameContext.Provider>

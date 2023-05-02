@@ -6,6 +6,12 @@ WordCloud game is a game in which you must choose words from the cloud matching 
 
 [DEMO](https://wordcloudgame-mu.vercel.app/) - deployed on Vercel
 
+## API
+
+[Code](https://github.com/ssynowiec/WordCloud-api)
+
+[Live](https://my-json-server.typicode.com/ssynowiec/WordCloud-api/questions)
+
 ## How to run
 
 ```bash
