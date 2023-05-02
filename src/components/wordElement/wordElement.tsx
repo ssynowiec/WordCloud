@@ -1,6 +1,6 @@
 import './wordElement.scss';
 import { clsx } from 'clsx';
-import { ChangeEvent, forwardRef } from 'react';
+import { ChangeEvent, forwardRef, useEffect, useState } from 'react';
 
 type WordElementProps = {
 	word: string;
@@ -11,16 +11,40 @@ type WordElementProps = {
 	disabled?: boolean;
 };
 
+type Position = {
+	top: string;
+	left: string;
+};
+
 export const WordElement = forwardRef<HTMLInputElement, WordElementProps>(
 	(
 		{ word, onChange, name, correct, checked, disabled }: WordElementProps,
 		ref,
 	) => {
-		const x = Math.floor(Math.random() * 85);
-		const y = Math.floor(Math.random() * 85);
+		const [position, setPosition] = useState<Position | null>(null);
+
+		useEffect(() => {
+			let ignore = false;
+
+			if (!ignore) {
+				const x = Math.floor(Math.random() * 85);
+				const y = Math.floor(Math.random() * 85);
+				setPosition({ top: `${y}%`, left: `${x}%` });
+			}
+
+			return () => {
+				ignore = true;
+			};
+		}, []);
 
 		return (
-			<div style={{ position: 'absolute', top: `${y}%`, left: `${x}%` }}>
+			<div
+				style={{
+					position: 'absolute',
+					top: position?.top,
+					left: position?.left,
+				}}
+			>
 				<input
 					ref={ref}
 					type='checkbox'
