@@ -1,15 +1,20 @@
 import { createContext, type ReactNode, useEffect, useState } from 'react';
 
-interface GameContextProps {
+type QuestionType = {
 	question: string;
 	all_words: string[];
 	good_words: string[];
-}
+};
+
+type GameContextProps = {
+	isLoading: boolean;
+} & QuestionType;
 
 export const GameContext = createContext<GameContextProps>({
 	question: '',
 	all_words: [],
 	good_words: [],
+	isLoading: false,
 });
 
 type GameProviderProps = {
@@ -17,15 +22,18 @@ type GameProviderProps = {
 };
 
 export const GameProvider = ({ children }: GameProviderProps) => {
-	const [question, setQuestion] = useState<GameContextProps>({
+	const [question, setQuestion] = useState<QuestionType>({
 		question: '',
 		all_words: [],
 		good_words: [],
 	});
 
+	const [isLoading, setIsLoading] = useState(false);
+
 	useEffect(() => {
 		let ignore = false;
 		const fetchData = async () => {
+			setIsLoading(true);
 			try {
 				const data = await fetch(
 					'https://my-json-server.typicode.com/ssynowiec/WordCloud-api/questions',
@@ -35,6 +43,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 				const questionData = response[randomIndex];
 				if (!ignore) {
 					setQuestion(questionData);
+					setIsLoading(false);
 				}
 			} catch (error) {
 				console.log(error);
@@ -58,6 +67,7 @@ export const GameProvider = ({ children }: GameProviderProps) => {
 				question: questionContent,
 				all_words: answers,
 				good_words: correctAnswers,
+				isLoading,
 			}}
 		>
 			{children}

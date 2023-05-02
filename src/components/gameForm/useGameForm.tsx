@@ -66,5 +66,6 @@ export const useGameForm = () => {
 		userAnswers,
 		isSubmitted,
 		question: { question, answers, correctAnswers },
+		isLoading: game.isLoading,
 	};
 };
