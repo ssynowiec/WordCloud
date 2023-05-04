@@ -20,12 +20,12 @@ export const UserContext = createContext<UserContextProps>({
 
 export const UserProvider = ({ children }: UserProviderProps) => {
 	const [user, setUser] = useState<string>(
-		window.localStorage.getItem('username') || '',
+		localStorage.getItem('username') || '',
 	);
 	const [score, setScore] = useState<number>(0);
 
 	useEffect(() => {
-		window.localStorage.setItem('username', user);
+		localStorage.setItem('username', user);
 	}, [user]);
 
 	return (
