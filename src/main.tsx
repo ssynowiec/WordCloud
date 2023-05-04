@@ -15,12 +15,11 @@ const router = createBrowserRouter([
 	{
 		path: '/play',
 		element: (
-			// TODO: uncomment this line to protect the page
-			// <ProtectedPage>
-			<GameProvider>
-				<Game />
-			</GameProvider>
-			// </ProtectedPage>
+			<ProtectedPage>
+				<GameProvider>
+					<Game />
+				</GameProvider>
+			</ProtectedPage>
 		),
 	},
 	{

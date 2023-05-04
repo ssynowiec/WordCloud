@@ -1,26 +1,32 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 type UserProviderProps = {
 	children: ReactNode;
 };
 
 interface UserContextProps {
-	user: string | null;
+	user: string;
 	score: number;
-	setUser: (username: string | null) => void;
+	setUser: (username: string) => void;
 	setScore: (score: number) => void;
 }
 
 export const UserContext = createContext<UserContextProps>({
-	user: null,
+	user: '',
 	score: 0,
-	setUser: () => {},
-	setScore: () => {},
+	setUser: () => '',
+	setScore: () => 0,
 });
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-	const [user, setUser] = useState<string | null>(null);
+	const [user, setUser] = useState<string>(
+		window.localStorage.getItem('username') || '',
+	);
 	const [score, setScore] = useState<number>(0);
+
+	useEffect(() => {
+		window.localStorage.setItem('username', user);
+	}, [user]);
 
 	return (
 		<UserContext.Provider value={{ user, score, setUser, setScore }}>

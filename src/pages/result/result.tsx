@@ -11,7 +11,7 @@ export const Result = () => {
 
 	const navigate = useNavigate();
 	const playAgain = () => {
-		setUser(null);
+		setUser('');
 		setScore(0);
 		navigate('/');
 	};

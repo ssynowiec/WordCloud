@@ -11,7 +11,7 @@ export const ProtectedPage = ({ children }: ProtectedPageProps) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!user) {
+		if (!user || user === 'null') {
 			return navigate('/');
 		}
 	}, [navigate, user]);
